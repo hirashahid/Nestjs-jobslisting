@@ -1,12 +1,14 @@
 import { Injectable } from '@nestjs/common';
 import {
   EmailAlreadyExistsException,
+  JobAlreadyApplied,
   NotFoundException,
 } from '@app/exceptions/custom.exception';
 import { errorMessages } from '@app/common/constants/errorMessages';
 import { successMessages } from '@app/common/constants/successMessages';
 import { PostgresPrismaService } from '@app/database/postgres-prisma.service';
 import { UserUpdateDto } from '@app/modules/user/dto/updateUser.dto';
+import { modelNames } from '../modelNames';
 
 @Injectable()
 export class PostgresQueriesService {
@@ -18,11 +20,28 @@ export class PostgresQueriesService {
     });
   }
 
-  async findUsers(model: string, where: any, skip: number, take: number) {
-    const users = await this.prisma[model].findMany({ where, skip, take });
-    if (users.length === 0)
-      throw new NotFoundException(errorMessages.userNotFound);
-    return users;
+  async findMany(model: string, where: any, skip: number, take: number) {
+    const data = await this.prisma[model].findMany({ where, skip, take });
+    if (data.length === 0)
+      throw new NotFoundException(errorMessages.dataNotFound);
+    return data;
+  }
+
+  async findManyJobs(
+    user,
+    model: string,
+    where: any,
+    skip: number,
+    take: number,
+  ) {
+    const jobs = await this.prisma[model].findMany({
+      where,
+      skip,
+      take,
+    });
+    if (jobs.length === 0)
+      throw new NotFoundException(errorMessages.dataNotFound);
+    return { jobs };
   }
 
   async findOne(model: string, search: string) {
@@ -33,8 +52,32 @@ export class PostgresQueriesService {
       },
     });
 
-    if (!userExists) throw new NotFoundException(errorMessages.userNotFound);
+    if (!userExists) throw new NotFoundException(errorMessages.dataNotFound);
     return userExists;
+  }
+
+  async findJob(model: string, search: string) {
+    const jobExists = await this.prisma[model].findFirst({
+      where: { uuid: search },
+    });
+
+    if (!jobExists) throw new NotFoundException(errorMessages.dataNotFound);
+    return jobExists;
+  }
+
+  async applyForJob(model: string, userId: number, jobId: string) {
+    const job = await this.findJob(modelNames.job, jobId);
+    if (job.applicants.includes(userId))
+      throw new JobAlreadyApplied(errorMessages.jobAlreadyApplied);
+    await this.prisma[model].update({
+      where: { id: job.id },
+      data: {
+        applicants: {
+          push: userId, // Add the user's ID to the applicants array
+        },
+      },
+    });
+    return { message: successMessages.appliedJob };
   }
 
   async findUserByphone(model: string, email: string, phone: string) {
@@ -97,7 +140,7 @@ export class PostgresQueriesService {
         return { message: successMessages.userHasBeenDeleted };
       })
       .catch(() => {
-        return { message: errorMessages.userNotFound };
+        return { message: errorMessages.dataNotFound };
       });
   }
 

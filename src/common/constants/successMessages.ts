@@ -10,4 +10,5 @@ export const successMessages = {
   tokenDeletedSuccessfully: 'Token has been deleted successfully',
   productHasBeenCreated: 'Product has been created succesfully',
   productHasBeenDeleted: 'Product has been deleted succesfully',
+  appliedJob: 'Job has been applied',
 };
