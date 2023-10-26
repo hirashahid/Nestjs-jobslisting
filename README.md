@@ -1,36 +1,124 @@
-<p align="center">
-  <a href="http://nestjs.com/" target="blank"><img src="https://nestjs.com/img/logo-small.svg" width="200" alt="Nest Logo" /></a>
-</p>
+# Job Listing Project
 
-[circleci-image]: https://img.shields.io/circleci/build/github/nestjs/nest/master?token=abc123def456
-[circleci-url]: https://circleci.com/gh/nestjs/nest
+The Job Listing Project is an innovative and dynamic online platform designed to bridge the gap between job seekers and employers. This project aims to provide a comprehensive, user-friendly, and efficient solution for individuals looking for employment opportunities and organizations seeking qualified talent.
 
-  <p align="center">A progressive <a href="http://nodejs.org" target="_blank">Node.js</a> framework for building efficient and scalable server-side applications.</p>
-    <p align="center">
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/v/@nestjs/core.svg" alt="NPM Version" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/l/@nestjs/core.svg" alt="Package License" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/dm/@nestjs/common.svg" alt="NPM Downloads" /></a>
-<a href="https://circleci.com/gh/nestjs/nest" target="_blank"><img src="https://img.shields.io/circleci/build/github/nestjs/nest/master" alt="CircleCI" /></a>
-<a href="https://coveralls.io/github/nestjs/nest?branch=master" target="_blank"><img src="https://coveralls.io/repos/github/nestjs/nest/badge.svg?branch=master#9" alt="Coverage" /></a>
-<a href="https://discord.gg/G7Qnnhy" target="_blank"><img src="https://img.shields.io/badge/discord-online-brightgreen.svg" alt="Discord"/></a>
-<a href="https://opencollective.com/nest#backer" target="_blank"><img src="https://opencollective.com/nest/backers/badge.svg" alt="Backers on Open Collective" /></a>
-<a href="https://opencollective.com/nest#sponsor" target="_blank"><img src="https://opencollective.com/nest/sponsors/badge.svg" alt="Sponsors on Open Collective" /></a>
-  <a href="https://paypal.me/kamilmysliwiec" target="_blank"><img src="https://img.shields.io/badge/Donate-PayPal-ff3f59.svg"/></a>
-    <a href="https://opencollective.com/nest#sponsor"  target="_blank"><img src="https://img.shields.io/badge/Support%20us-Open%20Collective-41B883.svg" alt="Support us"></a>
-  <a href="https://twitter.com/nestframework" target="_blank"><img src="https://img.shields.io/twitter/follow/nestframework.svg?style=social&label=Follow"></a>
-</p>
-  <!--[![Backers on Open Collective](https://opencollective.com/nest/backers/badge.svg)](https://opencollective.com/nest#backer)
-  [![Sponsors on Open Collective](https://opencollective.com/nest/sponsors/badge.svg)](https://opencollective.com/nest#sponsor)-->
+## Table of Contents
 
-## Description
+- [Features](#features)
+- [Technology](#technology)
+- [Installation](#installation)
+- [Verify Installation](#verify-installation)
+- [Cloning the Repository](#cloning-the-repository)
+- [Running the app](#running-the-app)
+- [Test](#test)
 
-[Nest](https://github.com/nestjs/nest) framework TypeScript starter repository.
+## Features
+
+- User-Friendly Interface: Intuitive design for easy navigation.
+- Advanced Search and Filters: Precise job searching with location, company and title.
+- Comprehensive Job Postings: Detailed job descriptions with company info.
+
+## Technology
+
+- [Node.js](https://nodejs.org/) (v16.14.2)
+- [PostgreSQL](https://www.postgresql.org/) (v15.4)
+- [pnpm](https://pnpm.js.org/) (v8.7.1) (Package Manager)
 
 ## Installation
 
-```bash
-$ pnpm install
-```
+Follow the platform-specific instructions below to set up your environment:
+
+### Windows
+
+1. **Node.js**:
+
+   - Download and install Node.js version 16.14.2 from [nodejs.org](https://nodejs.org/).
+
+2. **PostgreSQL**:
+   - Download and install PostgreSQL version 15.4 for Windows from [postgresql.org](https://www.postgresql.org/download/windows/).
+   - During installation, make note of the PostgreSQL password you set for the default 'postgres' user, as you'll need it later.
+
+### macOS
+
+1. **Node.js**:
+
+   - Install [Homebrew](https://brew.sh/), if not already installed.
+   - Install Node.js version 16.14.2 using Homebrew:
+     ```bash
+     brew install node@16
+     ```
+
+2. **PostgreSQL**:
+   - Install PostgreSQL version 15.4 using Homebrew:
+     ```bash
+     brew install postgresql@15
+     ```
+   - Follow the instructions provided by Homebrew to start the PostgreSQL service.
+
+### Linux (Ubuntu)
+
+1. **Node.js**:
+
+   - Install Node.js version 16.14.2 using NodeSource's Node.js repository:
+     ```bash
+     curl -fsSL https://deb.nodesource.com/setup_16.x | sudo -E bash -
+     sudo apt-get install -y nodejs
+     ```
+
+2. **PostgreSQL**:
+   - Install PostgreSQL version 15.4 on Ubuntu:
+     ```bash
+     sudo apt-get install postgresql-15
+     ```
+   - Follow the prompts during installation to set the 'postgres' user password.
+
+## Verify Installation
+
+To verify that Node.js and PostgreSQL are correctly installed, run the following commands:
+
+- **Node.js**:
+
+  ```bash
+  node -v
+
+  ```
+
+- **PostgreSQL**:
+  ```bash
+  psql --version
+  ```
+
+## Cloning the Repository
+
+To get a local copy of this project up and running, follow these steps:
+
+1. Open your terminal or command prompt.
+
+2. Navigate to the directory where you want to store the project:
+
+   ```bash
+   cd /path/to/your/directory
+
+   ```
+
+3. Clone the repository by running the following command:
+
+   ```bash
+   git clone https://github.com/Lead-Squad/classified-ads-api.git
+
+   ```
+
+4. Once the cloning process is complete, navigate to the project's directory:
+   ```bash
+   cd classified-ads-api
+   ```
+
+## Configuration
+
+1. **Environment Variables:**
+
+   - Create a `.env` file in the root directory of the project.
+   - Copy all environment variables from `.env.example` and add in .env file, then fill in the values
 
 ## Running the app
 
@@ -57,17 +145,3 @@ $ pnpm run test:e2e
 # test coverage
 $ pnpm run test:cov
 ```
-
-## Support
-
-Nest is an MIT-licensed open source project. It can grow thanks to the sponsors and support by the amazing backers. If you'd like to join them, please [read more here](https://docs.nestjs.com/support).
-
-## Stay in touch
-
-- Author - [Kamil Myśliwiec](https://kamilmysliwiec.com)
-- Website - [https://nestjs.com](https://nestjs.com/)
-- Twitter - [@nestframework](https://twitter.com/nestframework)
-
-## License
-
-Nest is [MIT licensed](LICENSE).
