@@ -150,7 +150,7 @@ export class AuthService {
 
     // find if user exist
     const user = await this.usersAuthService.findOne(email);
-    if (!user) return { message: errorMessages.userNotFound };
+    if (!user) return { message: errorMessages.dataNotFound };
 
     // find token exist against userId
     const tokenExist = await this.usersAuthService.findToken(

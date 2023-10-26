@@ -3,8 +3,7 @@ import { plainToClass } from 'class-transformer';
 import { Cron, CronExpression } from '@nestjs/schedule';
 
 import { UserSerialization } from '@app/modules/auth/serialization/user.serialization';
-import { PostgresQueriesService } from '@app/database/queries/userQueries.service';
-import { GetAllUsersQueryDto } from '@app/modules/user/dto/getAllUsers.dto';
+import { PostgresQueriesService } from '@app/database/queries/queries.service';
 import { UserUpdateDto } from '@app/modules/user/dto/updateUser.dto';
 import { modelNames } from '@app/database/modelNames';
 
@@ -20,43 +19,6 @@ export class UserAuthService {
 
   async create(data: any) {
     return await this.prismaQueries.createUser(modelNames.user, data);
-  }
-
-  async getAllUsers(query: GetAllUsersQueryDto) {
-    query.paginate = query.paginate ? query.paginate : 15;
-    query.page = query.page ? query.page : 1;
-    const skip = (query.page - 1) * query.paginate;
-    const search = query?.search;
-
-    const where = search
-      ? {
-          // eslint-disable-next-line @typescript-eslint/naming-convention
-          OR: [
-            { name: { contains: search } },
-            { email: { contains: search } },
-            { phone: { contains: search } },
-          ],
-        }
-      : {};
-
-    const users = await this.prismaQueries.findUsers(
-      modelNames.user,
-      where,
-      skip,
-      query.paginate,
-    );
-
-    const serializedUsers = await this.serializeUserProfile(users);
-    return {
-      data: serializedUsers,
-      total: users?.length,
-      meta: {
-        total: users?.length,
-        currentPage: query.page,
-        eachPage: query.paginate,
-        lastPage: Math.ceil(users?.length / query.paginate),
-      },
-    };
   }
 
   async findOne(username: string) {
@@ -95,10 +57,6 @@ export class UserAuthService {
       newHashedPassword,
       loggedInUser.uuid,
     );
-  }
-
-  async deleteUser(uuid: string) {
-    return await this.prismaQueries.deleteUser(modelNames.user, uuid);
   }
 
   async getProfile(loggedInUser: any) {

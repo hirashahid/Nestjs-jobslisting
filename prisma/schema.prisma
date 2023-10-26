@@ -28,6 +28,21 @@ model User {
   @@map("users")
 }
 
+model Job {
+  id               Int    @id @default(autoincrement())
+  uuid             String @unique @db.VarChar(145)
+  title            String
+  company          String
+  location         String
+  description      String
+  requirements     String
+  responsibilities String
+  benefits         String
+  applicants       Int[]
+
+  @@map("job")
+}
+
 model ApiKey {
   id        Int       @id @default(autoincrement())
   token     String    @unique

@@ -23,3 +23,9 @@ export class IncorrectPassword extends HttpException {
     super(message, HttpStatus.UNAUTHORIZED);
   }
 }
+
+export class JobAlreadyApplied extends HttpException {
+  constructor(message: string) {
+    super(message, HttpStatus.CONFLICT);
+  }
+}

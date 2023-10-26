@@ -23,7 +23,7 @@
     "postgres:migrate:dev:create": "prisma migrate dev --schema prisma/schema.prisma --create-only",
     "postgres:migrate:deploy": "npx prisma migrate deploy --schema prisma/schema.prisma --preview-feature",
     "prisma": "prisma",
-    "seed": "ts-node prisma/seed.ts",
+    "seed": "ts-node prisma/seedJobs.ts",
     "prisma:generate:postgres_client": "prisma generate --schema prisma/schema.prisma",
     "prisma:postgres:dbpush": "npx prisma db push --schema prisma/schema.prisma",
     "prisma:generate:db_clients": "prisma generate --schema prisma/schema.prisma && prisma generate --schema prisma/mongo/schema.prisma"

@@ -8,9 +8,16 @@ import { AuthModule } from '@app/modules/auth/auth.module';
 import { AppService } from '@app/app.service';
 import { CustomExceptionFilter } from '@app/filters/global-exception.filter';
 import { DatabaseModule } from '@app/database/database.module';
+import { JobModule } from '@app/modules/jobs/job.module';
 
 @Module({
-  imports: [ScheduleModule.forRoot(), UserModule, AuthModule, DatabaseModule],
+  imports: [
+    ScheduleModule.forRoot(),
+    UserModule,
+    AuthModule,
+    DatabaseModule,
+    JobModule,
+  ],
   controllers: [AppController],
   providers: [AppService, JwtService, CustomExceptionFilter],
 })
