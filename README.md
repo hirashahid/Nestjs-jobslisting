@@ -104,13 +104,13 @@ To get a local copy of this project up and running, follow these steps:
 3. Clone the repository by running the following command:
 
    ```bash
-   git clone https://github.com/Lead-Squad/classified-ads-api.git
+   git clone https://github.com/hirashahid/jobslisting.git
 
    ```
 
 4. Once the cloning process is complete, navigate to the project's directory:
    ```bash
-   cd classified-ads-api
+   cd jobslisting
    ```
 
 ## Configuration
